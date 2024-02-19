@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section>
+        <h2>&nbsp;&nbsp;See Bookings&nbsp;&nbsp;</h2>
+        {% if shws | length > 0 %}
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Show Id</th>
+                    <th>Title</th>
+                    <th>Venue</th>
+                    <th>Location</th>
+                    <th>Total Seats</th>
+                    <th>Seats Available</th>
+                    <th>Seats Booked</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for shw, result in packed: %}
+            
+                    {% set sh = "sh"  ~ shw.id  %}
+            
+                    <tr id="{{sh}}">
+                        <td>{{shw.id}}</td>
+                        <td>{{ shw.movie.title }}</td>
+                        <td>{{ shw.venue.name }}</td>
+                        <td>{{ shw.venue.location }}</td>
+                        <td>{{ shw.venue.num_total_seats }}</td>
+                        <td class="seats"></td>
+                        <td>{{ result }}</td>
+                        <td>{{ shw.day.strftime('%d-%m-%Y') }}</td>
+                        <td>{{ shw.time.strftime('%H:%M') }}</td>
+                        <td><a class="green" href="{{ url_for('manager.manager_booking', id=shw.id) }}">SEE BOOKINGS</a></td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                
+        {% else%}
+            <p style="text-align: center">THERE ARE NO SHOWS</p>
+        {% endif %}
+    </section>
+{% endblock %}

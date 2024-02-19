@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Edit Movie</h1>
+  <form action="{{ url_for('manager.edit_movie', movie_id=movie.id) }}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" value="{{ movie.title }}" required>
+    </div>
+    <div class="form-group">
+      <label for="director">Director</label>
+      <input type="text" class="form-control" id="director" name="director" value="{{ movie.director }}" required>
+    </div>
+    <div class="form-group">
+      <label for="duration">Duration</label>
+      <input type="number" class="form-control" id="duration" name="duration" value="{{ movie.duration }}" required>
+    </div>
+    <div class="form-group">
+      <label for="cast">Cast</label>
+      <input type="text" class="form-control" id="cast" name="cast" value="{{ movie.cast }}" required>
+    </div>
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <select class="form-control" id="rating" name="rating" required>
+        <option value="1" {% if movie.rating == 1 %}selected{% endif %}>1</option>
+        <option value="2" {% if movie.rating == 2 %}selected{% endif %}>2</option>
+        <option value="3" {% if movie.rating == 3 %}selected{% endif %}>3</option>
+        <option value="4" {% if movie.rating == 4 %}selected{% endif %}>4</option>
+        <option value="5" {% if movie.rating == 5 %}selected{% endif %}>5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price" name="price" value="{{ movie.price }}" required>
+    </div>
+    <div class="form-group">
+      <label for="poster">Poster</label>
+      <input type="text" class="form-control-file" name="img" id="img" value="{{ movie.img }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </form>
+{% endblock %}

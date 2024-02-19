@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Movies</h2>
+  <hr>
+  
+<div class="row">
+    <center>
+        <p></p>
+        <a href="{{ url_for('manager.create_movie') }}" class="submit"> Add New Movie</a>
+    </center>
+</div>
+  
+  {% if movies %}
+  <div class="table">
+    {% for movie in movies %}
+      <div class="table">
+        <div class="card mb-4 box-shadow">
+          <img class="card-img-top" img src={{movie.img}} alt="{{ movie.title }}" width=150 style="border-radius: 15px;">
+          <div class="card-body">
+            <h3 class="card-title">{{ movie.title }}</h3>
+            <div class="d-flex justify-content-between align-items-center">
+
+            </div>
+
+            <td>
+              <a href="{{ url_for('manager.edit_movie', movie_id=movie.id) }}" class="btn btn-sm btn-primary"></i>Edit</a>
+              <a href="{{ url_for('manager.delete_movie', movie_id=movie.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Movie?')">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% else %}
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <p>No Movies found.</p>
+      </div>
+    </div>
+    {% endif %}
+  
+
+
+
+ {% endblock %}

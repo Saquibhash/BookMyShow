@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Create New Movie</h2>
+  <hr>
+  <form method="POST" action="{{ url_for('manager.create_movie') }}" enctype="multipart/form-data">
+    <div class="form">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title" id="title" placeholder="Enter title" required>
+    </div>
+    <div class="form-group">
+      <label for="director">Director</label>
+      <input type="text" class="form-control" name="director" id="director" rows="3" placeholder="Enter director" required>
+    </div>
+    <div class="form-group">
+        <label for="duration">Duration</label>
+        <input type="number" class="form-control" name="duration" id="duration" placeholder="Enter duration" required>
+      </div>
+      <div class="form-group">
+        <label for="cast">Cast</label>
+        <input type="text" class="form-control" name="cast" id="cast" placeholder="Enter cast" required>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating</label>
+        <input type="number" class="form-control" name="rating" id="rating" min="0" max="5" placeholder="Enter rating" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" name="price" id="price" placeholder="Enter price" required>
+      </div>
+    <div class="form-group">
+      <label for="poster">Poster</label>
+      <input type="text" class="form-control-file" name="img" id="img" placeholder="Enter URL for poster" required>
+    </div>
+    
+    <button type="submit" class="submit">Create</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="table">
+  <div class="col-md-12">
+    <h2>Venues</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Capacity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for venue in venues %}
+            
+        <tr>
+          <td>{{ venue.id }}</td>
+          <td>{{ venue.name }}</td>
+          <td>{{ venue.location }}</td>
+          <td>{{ venue.num_total_seats }}</td>
+          <td>
+            <a href="{{ url_for('manager.edit_venue', venue_id=venue.id) }}" class="btn btn-primary btn-sm">Edit</a>
+            <a href="{{ url_for('manager.delete_venue', venue_id=venue.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this venue?')">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <center>
+    <p></p><p></p><p></p>
+      <a href="{{ url_for('manager.create_venue') }}" class="submit">Add Venue</a></center>
+  </div>
+</div>
+{% endblock %}

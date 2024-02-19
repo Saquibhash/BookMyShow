@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>   
+    <h2>&nbsp;&nbsp;{{movie.title}}&nbsp;&nbsp;</h2>
+    <section class="movie-description">
+         <div class="form" style="display: flex;width:100%;height: auto;">
+            <img src={{movie.img}} width=250px style="border-radius: 15px;">
+            <p style="padding-left: 25px;text-align: left;">
+                <b>Title:</b>&nbsp;{{movie.title}}<br><br>
+                <b>Duration:</b>&nbsp;{{movie.duration}} min<br><br>
+                <b>Director:</b>&nbsp;{{movie.director}}<br><br>
+                <b>Cast:</b>&nbsp;{{movie.cast}}<br><br>
+                <b>Ratings:</b>&nbsp;{{movie.rating}}<br><br>
+            </p>
+        </div>
+    </section>
+    <section class="movie-shws">
+        <h2>&nbsp;&nbsp;SHOWS&nbsp;&nbsp;</h2>
+        {% if shws | length > 0 %}
+            {% include 'shws_table.html' %}
+        {% else%}
+            <p style="text-align: center">THERE ARE NO {{movie.title | upper}} SHOWS SOON</p>
+        {% endif %}
+    </section>
+</section>
+    
+{% endblock %}

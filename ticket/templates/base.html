@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>BOOK MY SHOW</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='bookings.css') }}">
+    </head>
+    <body>
+        <header class="header">
+            <div>
+                <h1>BOOK MY SHOW</h1>
+                {% if current_user.is_authenticated: %}
+                    {% if current_user.role == current_user.role.__class__.manager %}
+                        <a href="{{ url_for('main.index') }}">Home</a>
+                        <a href="{{ url_for('manager.bookings') }}">Bookings</a>
+                        <a href="{{ url_for('manager.schedule') }}">Shows   </a>
+                        <a href="{{ url_for('manager.list_venues') }}">Venues  </a>
+                        <a href="{{ url_for('manager.list_movies') }}">Movies </a>
+                        <a href="{{ url_for('authenticate.logout') }}">Log out</a> 
+                    {% elif current_user.role == current_user.role.__class__.customer %}
+                        <a href="{{ url_for('main.index') }}">Home</a>
+                        <a href="{{ url_for('main.user') }}">Profile</a>
+                        <a href="{{ url_for('main.booking')}}">Buy Tickets </a>
+                        <a href="{{ url_for('authenticate.logout') }}">Log out</a>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                    <a href="{{ url_for('authenticate.signup') }}">Sign Up</a>
+                    <a href="{{ url_for('authenticate.login') }}">Login</a>
+                {% endif %}
+            </div>
+        </header>
+
+        <section class="content">
+            {% block content %}{% endblock %}
+        </section>
+
+        <footer style="text-align: center; color:rgb(255, 255, 255);">21f1004600-MAD-1-IITM </footer>
+        <script type=text/javascript src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type=text/javascript src="{{url_for('static', filename='js/main.js') }}"></script>
+    </body>
+    
+</html>

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'authenticate/error.html' %}
+    <section>
+        <h2>&nbsp;&nbsp;Our Shows&nbsp;&nbsp;</h2>
+
+        <a class="buttom" href="{{ url_for('manager.add')}}" style="display:block;">ADD A NEW SHOW</a>
+        <br>
+        
+        {% if shws | length > 0 %}
+            
+            <table class="table-slidedown">
+                <thead>
+                <tr>
+                    <th>Show Id</th>
+                    <th>Title</th>
+                    <th>Venue</th>
+                    <th>Location</th>
+                    <th>Total Seats</th>
+                    <th>Seats Available</th>
+                    <th>Seats Booked</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for shw, result in packed: %}
+                        {% set sh = "sh"  ~ shw.id  %}
+                        <tr id="{{sh}}">
+                            <td>{{shw.id}}</td>
+                            <td>{{ shw.movie.title }}</td>
+                            <td>{{ shw.venue.name }}</td>
+                            <td>{{ shw.venue.location }}</td>
+                            <td>{{ shw.venue.num_total_seats }}</td>
+                            <td class="seats"></td>
+                            <td>{{ result }}</td>
+                            <td>{{ shw.day.strftime('%d-%m-%Y') }}</td>
+                            <td>{{ shw.time }}</td>
+                            {% if result > 0 %}
+                                <td>Cannot modify shows<br> with bookings</td>
+                            {% else %}
+                                <td><a class="red" href="{{ url_for('manager.delete', id=shw.id) }}">Delete</a> 
+                                     <a class="green" href="{{ url_for('manager.edit', id=shw.id) }}">Edit</a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                
+        {% else%}
+            <p style="text-align: center">THERE ARE NO SCHEDULED SHOWS</p>
+        {% endif %}
+    </section>
+{% endblock %}

@@ -1,0 +1,33 @@
+
+<table class="table-movies">
+    <thead>
+    <tr>
+        <th>Movie Poster</th>
+        <th>Title</th>
+        <th>Venue</th>
+        <th>Location</th>
+        <th>Seats Available</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for shw in shws %}
+
+        {% set sh = "sh"  ~ shw.id  %}
+
+        <tr id="{{sh}}">
+            <td><a href="{{ url_for('main.movie', id=shw.movie.id) }}"><img src={{shw.movie.img}} width=120 style="border-radius: 15px;"></a></td>
+            <td>{{ shw.movie.title }}</td>
+            <td>{{ shw.venue.name }}</td>
+            <td>{{ shw.venue.location }}</td>
+            <td class="seats"></td>
+            <td>{{ shw.day.strftime('%d-%m-%Y') }}</td>
+            <td>{{ shw.time.strftime('%H:%M') }}</td>
+            <td class="sold"><a class="buttom" href="{{ url_for('main.booking', id=shw.id) }}">Buy Ticket</a></td>    
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+

@@ -1,0 +1,5 @@
+<div class="horizontal-movies">
+    {% for movie in all_movies %}
+    <a href="{{ url_for('main.movie', id=movie.id) }}"><img src={{movie.img}} class="card-img-top" width="200" height="200"></a>
+    {% endfor %}
+</div>

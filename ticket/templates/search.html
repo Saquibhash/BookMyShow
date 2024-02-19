@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Search Results for '{{ query }}'</h1>
+
+    <h2>Movies</h2>
+    <ul>
+    {% for movie in movies %}
+        <li> <a href="{{ url_for('main.movie', id=movie.id) }}"><img src={{movie.img}} class="card-img-top" width=150 style="border-radius: 15px;"> </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Venues</h2>
+    <ul>
+    {% for venue in venues %}
+        <li>{{ venue.name }} - {{ venue.location }} - {{ venue.num_total_seats }} </li>
+    {% endfor %}
+    
+    </ul>
+{% endblock %}

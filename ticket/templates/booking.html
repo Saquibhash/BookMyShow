@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'authenticate/error.html' %}
+{% if shw != None %}
+    <section class='form'>
+        <h2>&nbsp;&nbsp;Book Tickets&nbsp;&nbsp;</h2>
+        <form action="{{ url_for('main.booking_post') }}" method="post">
+            
+            <div><img id="movie_image" src={{shw.movie.img}}  width=100 style="border-radius: 15px;"></div>
+            <label><br>{{shw.movie.title}}<br></label>
+            <div><select id="shw" name="shw" onchange='interactiveForm();'>
+                {% for sh in shws %}
+                    {% if sh.id == shw.id %}
+                    <option value="{{sh.id}}" selected><b>Day:</b>{{sh.day.strftime('%d-%m-%Y')}} Time:{{sh.time.strftime('%H:%M')}} Venue: {{sh.venue.name}}</option>
+                    {% else %}
+                    <option value="{{sh.id}}"><b>Day:</b>{{sh.day.strftime('%d-%m-%Y')}} Time:{{sh.time.strftime('%H:%M')}} Venue: {{sh.venue.name}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            </div>
+            
+            <div id="more-seats">
+                <div><label><br>Number of seats<br></label>
+                    <select id="seats" name="seats" onchange='Price();'>
+                        <option id="option-seats" value="1" selected>1</option>
+                    </select>
+                </div>
+                <br>
+            
+                <div><a id="price"></a></div>
+                <div><input class='submit' type="submit" value="Buy"/></div>
+            </div>
+        
+            <div id="no-more-seats">
+                <p>NO MORE AVAILABLE SEATS!</p>
+            </div>
+            
+        </form>
+
+    </section>
+{% endif %}
+
+<section class="movie-shws">
+    <h2>&nbsp;&nbsp;See Other Options&nbsp;&nbsp;</h2>
+    {% if shws | length > 0 %}
+        {% include 'shws_table.html' %}
+    {% else%}
+        <p style="text-align: center">THERE ARE NO {{shw.movie.title | upper}} SHOWS SOON</p>
+    {% endif %}
+</section>
+
+{% endblock %}

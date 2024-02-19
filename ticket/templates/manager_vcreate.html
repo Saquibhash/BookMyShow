@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="form">
+    <div class="col-md-8">
+      <h1>Create a new venue</h1>
+      <form method="POST" action="{{ url_for('manager.create_venue') }}">
+        <div class="form-group">
+          <label for="name">Venue Name</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" class="form-control" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+          <label for="num_total_seats">Capacity</label>
+          <input type="text" class="form-control" id="num_total_seats" name="num_total_seats" required>
+        </div>
+        <button type="submit" class="submit">Create</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

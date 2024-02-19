@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section>
+        <h3 style="text-align: center;background-color:rgba(255, 0, 0, 0.363);height: 50px;line-height:50px;font-family: 'Courier New', monospace;">&nbsp;&nbsp;Welcome to Your Profile {{current_user.name|upper}}&nbsp;&nbsp;</h3>
+        <!-- <h2>&nbsp;&nbsp;&nbsp;&nbsp;</h2> -->
+        <h2>&nbsp;&nbsp;Current bookings&nbsp;&nbsp;</h2>
+            {% if now_bookings | length > 0 %}
+                {% set bookings = now_bookings %}
+                {% include 'bookings_table.html' %}
+            
+            {% else%}
+                <p style="text-align: center">YOU DON'T HAVE BOOKED bookingS.</p>
+            {% endif %}
+        <h2>&nbsp;&nbsp;Past bookings&nbsp;&nbsp;</h2>
+            {% if past_bookings | length > 0 %}
+                {% set bookings = past_bookings %}
+                {% include 'bookings_table.html' %}
+        
+            {% else%}
+                <p style="text-align: center">YOU DON'T HAVE PAST BOOKED bookingS.</p>
+            {% endif %}
+    </section>
+{% endblock %}

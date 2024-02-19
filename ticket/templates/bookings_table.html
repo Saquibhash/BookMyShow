@@ -1,0 +1,34 @@
+
+
+
+<table class="table-bookings">
+    <thead>
+    <tr>
+        <th>Movie Poster</th>
+        <th>Title</th>
+        <th>Venue</th>
+        <th>Location</th>
+        <th>Seats Reserved</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Booked Day</th>
+      
+    </tr>
+    </thead>
+    <tbody>
+    {% for booking in bookings %}
+    <tr>
+        <td><a href="{{ url_for('main.movie', id=booking.shw.movie.id) }}"><img src={{booking.shw.movie.img}} width=120 style="border-radius: 15px;"></a></td>
+        <td>{{ booking.shw.movie.title }}</td>
+        <td>{{ booking.shw.venue.name }}</td>
+        <td>{{ booking.shw.venue.location }}</td>
+        <td>{{ booking.num_seats }}</td>
+        <td>{{ booking.shw.day.strftime('%d-%m-%Y') }}</td>
+        <td>{{ booking.shw.time.strftime('%H:%M') }}</td>
+        <td>{{ booking.date_time }}</td>
+        <td></td>
+        
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

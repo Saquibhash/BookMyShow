@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form">
+  <h1 class="mt-4">Edit Venue</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{ venue.name }}">
+    </div>
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" class="form-control" id="location" name="location" value="{{ venue.location }}">
+    </div>
+    <div class="form-group">
+      <label for="num_total_seats">Capacity</label>
+      <input type="number" class="form-control" id="num_total_seats" name="num_total_seats" value="{{ venue.num_total_seats }}">
+    </div>
+    <button type="submit" class="submit">Update Venue</button>
+    <a href="{{ url_for('manager.list_venues') }}" class="submit">Cancel</a>
+  </form>
+</div>
+{% endblock %}
